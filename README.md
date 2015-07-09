@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-### Ruby on Rails
+### Ruby on Rails 4.x
 
 If using this gem in the context of a Ruby on Rails application, there's nothing
 more that you need to do beyond including the gem in your `Gemfile`.
@@ -33,6 +33,29 @@ initializer:
 require 'circuitry-middleware'
 ```
 
+### Ruby on Rails 3.x
+
+If your application *does not* use either of the `Rack::ETag` or
+`Rack::ConditionalGet` middleware components (check via `rake middleware`), then
+you can follow the Rails 4.x directions above.
+
+If your application *does* use either of these middleware components, then this
+gem must be implemented in a different manner due to an older Rack dependency
+that improperly implements these pieces of middleware.
+
+First, in your `Gemfile`:
+
+```ruby
+gem 'circuitry-middleware', require: false
+```
+
+Then in your `config/application.rb`:
+
+```ruby
+require 'circuitry/middleware/rack'
+config.middleware.insert_before Rack::ConditionalGet, Circuitry::Middleware::Rack
+```
+
 ### Rack
 
 If using this gem in the context of a Rack application, you'll need to explicitly
@@ -42,6 +65,20 @@ include the middleware as a part of your Rackup file (generally `config.ru`):
 require 'circuitry-middleware'
 use Circuitry::Middleware
 ```
+
+### Custom Options
+
+By default, this gem utilizes batching when publishing and threading when
+subscribing.  These options can be overridden by swapping the middleware.
+
+```ruby
+config.middleware.swap Circuitry::Middleware::Rack, Circuitry::Middleware::Rack,
+    publish_async_strategy: :fork,
+    subscribe_async_strategy: :fork
+```
+
+Please refer to the [circuitry gem](https://github.com/kapost/circuitry) for
+more insight on asynchronous options.
 
 ## Development
 
