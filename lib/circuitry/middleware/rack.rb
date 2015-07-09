@@ -13,7 +13,6 @@ module Circuitry
       def call(env)
         status, headers, actual_body = @app.call(env)
         body = ::Rack::BodyProxy.new(actual_body) do
-          debugger
           Circuitry.flush
         end
         [status, headers, body]
