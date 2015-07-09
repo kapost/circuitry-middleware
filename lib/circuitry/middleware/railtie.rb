@@ -1,8 +1,8 @@
 module Circuitry
-  class Middleware
+  module Middleware
     class Railtie < ::Rails::Railtie
       initializer 'circuitry.middleware' do |app|
-        app.middleware.use Middleware
+        app.middleware.use Middleware::Rack
       end
     end
   end

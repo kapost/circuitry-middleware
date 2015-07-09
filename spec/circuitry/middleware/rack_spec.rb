@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Circuitry::Middleware, type: :model do
+RSpec.describe Circuitry::Middleware::Rack, type: :model do
   subject { described_class.new(app, options) }
 
   let(:app) { double('app', call: nil) }
@@ -30,9 +30,10 @@ RSpec.describe Circuitry::Middleware, type: :model do
       expect(app).to have_received(:call).with(env)
     end
 
-    it 'flushes batched circuitry requests' do
+    it 'flushes batched circuitry requests when body is closed' do
       expect(Circuitry).to receive(:flush)
-      subject.call(env)
+      _status, _headers, body = subject.call(env)
+      body.close
     end
   end
 end
