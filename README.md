@@ -1,9 +1,9 @@
 # Circuitry::Middleware
 
+Rails/Rack middleware for batching circuitry notifications.
+
 [![Code Climate](https://codeclimate.com/repos/559d735f6956804ff2000a9b/badges/ab8b6ef0a8e8a115041b/gpa.svg)](https://codeclimate.com/repos/559d735f6956804ff2000a9b/feed)
 [![Test Coverage](https://codeclimate.com/repos/559d735f6956804ff2000a9b/badges/ab8b6ef0a8e8a115041b/coverage.svg)](https://codeclimate.com/repos/559d735f6956804ff2000a9b/coverage)
-
-Rails/Rack middleware for batching circuitry notifications.
 
 ## Installation
 
