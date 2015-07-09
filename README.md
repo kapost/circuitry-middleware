@@ -66,6 +66,20 @@ require 'circuitry-middleware'
 use Circuitry::Middleware
 ```
 
+### Custom Options
+
+By default, this gem utilizes batching when publishing and threading when
+subscribing.  These options can be overridden by swapping the middleware.
+
+```ruby
+config.middleware.swap Circuitry::Middleware::Rack, Circuitry::Middleware::Rack,
+    publish_async_strategy: :fork,
+    subscribe_async_strategy: :fork
+```
+
+Please refer to the [circuitry gem](https://github.com/kapost/circuitry) for
+more insight on asynchronous options.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
