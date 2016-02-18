@@ -12,12 +12,12 @@ RSpec.describe Circuitry::Middleware::Rack, type: :model do
     let(:options) { { publish_async_strategy: :fork, subscribe_async_strategy: :thread } }
 
     it 'passes the publish async strategy to circuitry config' do
-      expect(Circuitry.config).to receive(:publish_async_strategy=).with(:fork)
+      expect(Circuitry.publisher_config).to receive(:async_strategy=).with(:fork)
       subject.new(app, options)
     end
 
     it 'passes the subscribe async strategy to circuitry config' do
-      expect(Circuitry.config).to receive(:subscribe_async_strategy=).with(:thread)
+      expect(Circuitry.subscriber_config).to receive(:async_strategy=).with(:thread)
       subject.new(app, options)
     end
   end
