@@ -1,5 +1,5 @@
 module Circuitry
   module Middleware
-    VERSION = '1.1.1'
+    VERSION = '3.0.0'
   end
 end

@@ -6,8 +6,8 @@ module Circuitry
     class Rack
       def initialize(app, options = {})
         @app = app
-        Circuitry.config.publish_async_strategy = options.fetch(:publish_async_strategy, :batch)
-        Circuitry.config.subscribe_async_strategy = options.fetch(:subscribe_async_strategy, :thread)
+        Circuitry.publisher_config.async_strategy = options.fetch(:publish_async_strategy, :batch)
+        Circuitry.subscriber_config.async_strategy = options.fetch(:subscribe_async_strategy, :thread)
       end
 
       def call(env)

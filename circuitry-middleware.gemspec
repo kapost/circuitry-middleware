@@ -6,8 +6,8 @@ require 'circuitry/middleware/version'
 Gem::Specification.new do |spec|
   spec.name          = 'circuitry-middleware'
   spec.version       = Circuitry::Middleware::VERSION
-  spec.authors       = ['Matt Huggins']
-  spec.email         = ['matt.huggins@kapost.com']
+  spec.authors       = ['Matt Huggins', 'Brandon Croft']
+  spec.email         = ['matt.huggins@kapost.com', 'brandon@kapost.com']
 
   spec.summary       = %q{Rails/Rack middleware for batching circuitry notifications.}
   spec.description   = %q{Batches and flushes circuitry SNS messages after a request finishes processing.}
@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'circuitry', ['>= 1.1.0', '< 3.0.0']
+  spec.add_dependency 'circuitry', '>= 3.0.0'
   spec.add_dependency 'rack', '>= 1.4.5'
 
   spec.add_development_dependency 'pry-nav'
